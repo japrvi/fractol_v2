@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:45:56 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/07/14 21:04:55 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/07/14 21:42:15 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # endif
 # ifndef YWINDOW
 #  define YWINDOW 800
+# define Mandelbrot 1
+# define Julia 2
+# define Newton 3
 # endif
 # include <math.h>
 # include <errno.h>
@@ -41,6 +44,8 @@ typedef struct	s_complex
 
 typedef struct	s_data
 {
+	void			*mlx;
+	void			*mlx_win;
 	double			x_max;
 	double			y_max;
 	double			x_min;
@@ -53,11 +58,13 @@ typedef struct	s_data
 	unsigned char	red;
 	unsigned char	green;
 	unsigned char	transparent;
+	int				type;
 }	t_data;
 
 //Funciones de renderizado
-void	my_pixel_put(t_dataimgg, int x, int y, int color);
-void	render(t_data *data, t_img);
+void	my_pixel_put(t_img *img, int x, int y, int color);
+void	render(t_img *img, t_data *data);
+int		rutine(t_data *data);
 
 //Funciones para procesar la entrada de datos
 
