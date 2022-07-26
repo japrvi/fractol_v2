@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:45:56 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/07/14 21:42:15 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/07/26 21:58:04 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # endif
 # ifndef YWINDOW
 #  define YWINDOW 800
-# define Mandelbrot 1
-# define Julia 2
-# define Newton 3
 # endif
+# define MANDEBROT 1
+# define JULIA 2
+# define NEWTON 3
 # include <math.h>
 # include <errno.h>
 # include "mlx.h"
@@ -64,14 +64,15 @@ typedef struct	s_data
 //Funciones de renderizado
 void	my_pixel_put(t_img *img, int x, int y, int color);
 void	render(t_img *img, t_data *data);
-int		rutine(t_data *data);
+int		rutine(t_img *data, int x, int y);
 
 //Funciones para procesar la entrada de datos
 
 //Funciones para asignar el numero complejo
 
 //Funciones que implementa el algoritmo correspondiente
-
+unsigned int	 burning(t_complex z, t_complex c, unsigned int it);
+unsigned int	 m_j(t_complex z, t_complex c, unsigned int it);
 
 //Funcion que captura el movimiento de raton
 
