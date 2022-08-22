@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:45:56 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/07/26 21:58:04 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/08/22 20:39:17 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,17 @@ typedef struct	s_data
 }	t_data;
 
 //Funciones de renderizado
-void	my_pixel_put(t_img *img, int x, int y, int color);
-void	render(t_img *img, t_data *data);
-int		rutine(t_img *data, int x, int y);
+void			my_pixel_put(t_img *img, int x, int y, int color);
+void			render(t_img *img, t_data *data);
+int				rutine(t_data *data, int x, int y);
 
 //Funciones para procesar la entrada de datos
+void			print_error();
+void			parse(t_data *data);
 
+//Funciones para inicializar los atributos
+void			image_mlx_init(t_data *data, t_img *img);
+void			atributes_init(t_data *data);
 //Funciones para asignar el numero complejo
 
 //Funciones que implementa el algoritmo correspondiente
