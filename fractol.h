@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:45:56 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/23 18:36:14 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/08/23 21:44:18 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # ifndef YWINDOW
 #  define YWINDOW 800
 # endif
-# define MANDEBROT 1
+# define MANDELBROT 1
 # define JULIA 2
-# define NEWTON 3
+# define SHIP 3
 # include <math.h>
 # include <errno.h>
 # include "./minilibx_opengl_20191021/mlx.h"
@@ -67,13 +67,14 @@ void			render(t_img *img, t_data *data);
 int				rutine(t_data *data, int x, int y);
 
 //Funciones para procesar la entrada de datos
-void			print_error();
-void			parse(t_data *data);
+void			display_error();
+void			parse(t_data *data, int argc, char **argv);
 
 //Funciones para inicializar los atributos
 void			image_mlx_init(t_data *data, t_img *img);
 void			atributes_init(t_data *data);
 //Funciones para asignar el numero complejo
+t_complex		get_complex(int	v_x, int v_y);
 
 //Funciones que implementa el algoritmo correspondiente
 unsigned int	 burning(t_complex z, t_complex c, unsigned int it);
