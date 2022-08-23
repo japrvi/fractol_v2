@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:45:56 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/22 20:39:17 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:36:14 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define NEWTON 3
 # include <math.h>
 # include <errno.h>
-# include "mlx.h"
+# include "./minilibx_opengl_20191021/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
 
