@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:39:44 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/23 21:44:16 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:40:41 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,8 @@ int	ft_atoi(char *str)
 
 void	parse(t_data *data, int argc, char **argv)
 {
-	if (argc == 2)
-	{
-		if (!strcmp(argv[1],"Mandelbrot"))
-			data->type = MANDELBROT;
-		else if (!strcmp(argv[1], "Ship"))
-			data->type = SHIP;
-		else
-			display_error();
-	}
-	else if (argc == 4)
-	{
-		if (!strcmp(argv[1], "Julia"))
-		{
-			data->type = JULIA;
-			data->z_o = get_complex(ft_atoi(argv[2]), ft_atoi(argv[3]));
-		}
-	}
-	else
-		display_error();
+	if (!strcmp("Mandelbrot", argv[1]) || !strcmp("Julia", argv[1]))
+		data->rutine = m_j;
+	else if (!strcmp("Ship", argv[1]))
+		data->rutine = burning;
 }

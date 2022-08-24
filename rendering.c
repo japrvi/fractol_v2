@@ -6,15 +6,29 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 21:09:48 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/22 18:45:17 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/08/24 20:40:43 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	rutine(t_data *data, int x, int y)
+int	rutine(t_data *data, t_complex vary)
 {
-	return (0);
+	t_complex	z_o;
+	t_complex	constant;
+
+	if (data->type == MANDELBROT || data->type == SHIP)
+	{
+		z_o.im = 0.0;
+		z_o.real = 0.0;
+		constant = vary;
+	}
+	else
+	{
+		z_o = vary;
+		constant = data->constant;
+	}
+	return (data->rutine (z_o, constant, data->iterations));
 }
 
 void	my_pixel_put(t_img *img, int x, int y, int color)
@@ -37,7 +51,7 @@ void	render(t_img *img, t_data *data)
 		j = 0;
 		while (j < YWINDOW)
 		{
-			color = rutine(data, i, j);
+			color = rutine(data, get_complex(i, j, data));
 			my_pixel_put(img, i, j, color);
 			j++;
 		}
