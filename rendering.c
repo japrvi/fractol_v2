@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 21:09:48 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/24 20:40:43 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:18:11 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	rutine(t_data *data, t_complex vary)
 {
-	t_complex	z_o;
-	t_complex	constant;
+	t_complex		z_o;
+	t_complex		constant;
 
 	if (data->type == MANDELBROT || data->type == SHIP)
 	{
@@ -28,12 +28,12 @@ int	rutine(t_data *data, t_complex vary)
 		z_o = vary;
 		constant = data->constant;
 	}
-	return (data->rutine (z_o, constant, data->iterations));
+	return (data->rutine(z_o, constant, data->iterations) + 100);
 }
 
 void	my_pixel_put(t_img *img, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
 	*(unsigned int *) dst = color;
@@ -42,7 +42,7 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 void	render(t_img *img, t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 	int	color;
 
 	i = 0;
