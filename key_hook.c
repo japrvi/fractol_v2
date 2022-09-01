@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 20:39:50 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/01 20:41:11 by jpozuelo         ###   ########.fr       */
+/*   Created: 2022/09/01 19:43:57 by jpozuelo          #+#    #+#             */
+/*   Updated: 2022/09/01 20:36:04 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	main(int argc, char **argv)
+void	change_size(double *v_max, double *v_min, double increase)
 {
-	static t_data	data;
-	static t_img	img;
+	if (v_max)
+		*v_max += increase;
+	if (v_min)
+		*v_min += increase;
+}
 
-	image_mlx_init(&data, &img);
-	atributes_init(&data, &img);
-	parse(&data, argc, argv);
-	render(&data);
-	hooks_init(&data);
-	mlx_loop(data.mlx);
-	mlx_destroy_image(data.mlx, data.mlx_win);
-	return (0);
+void	colors(int key_code, t_data *data)
+{
+	if (key_code == 9)
+		data->blue += 5;
+}
+
+void	key_zoom()
+{
 }

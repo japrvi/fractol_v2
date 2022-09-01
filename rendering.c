@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 21:09:48 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/25 20:18:11 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:24:45 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	rutine(t_data *data, t_complex vary)
 		z_o = vary;
 		constant = data->constant;
 	}
-	return (data->rutine(z_o, constant, data->iterations) + 100);
+	return (100 * data->rutine(z_o, constant, data->iterations) + 100);
 }
 
 void	my_pixel_put(t_img *img, int x, int y, int color)
@@ -39,12 +39,15 @@ void	my_pixel_put(t_img *img, int x, int y, int color)
 	*(unsigned int *) dst = color;
 }
 
-void	render(t_img *img, t_data *data)
+void	render(t_data *data)
 {
-	int	i;
-	int	j;
-	int	color;
+	int				i;
+	int				j;
+	int				color;
+	t_img			*img;
 
+	data->rendering = 1;
+	img = data->img;
 	i = 0;
 	while (i < XWINDOW)
 	{
@@ -58,4 +61,5 @@ void	render(t_img *img, t_data *data)
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, img->img, 0, 0);
+	data->rendering = 0;
 }

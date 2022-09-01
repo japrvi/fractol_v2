@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:45:56 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/25 20:20:44 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/01 20:40:35 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_data
 	double			y_min;
 	double			factor_x;
 	double			factor_y;
+	double			move;
 	unsigned int	iterations;
 	unsigned char	blue;
 	unsigned char	red;
@@ -59,13 +60,16 @@ typedef struct s_data
 	unsigned char	transparent;
 	unsigned int	(*rutine)(t_complex, t_complex, unsigned int);
 	int				type;
+	int				rendering;
 	t_complex		constant;
+	t_img			*img;
 }	t_data;
 
 //Funciones de renderizado
 void			my_pixel_put(t_img *img, int x, int y, int color);
-void			render(t_img *img, t_data *data);
+void			render(t_data *data);
 int				rutine(t_data *data, t_complex vary);
+int				render_next_frame(t_data *data);
 
 //Funciones para procesar la entrada de datos
 void			display_error(void);
@@ -73,22 +77,22 @@ void			parse(t_data *data, int argc, char **argv);
 
 //Funciones para inicializar los atributos
 void			image_mlx_init(t_data *data, t_img *img);
-void			atributes_init(t_data *data);
+void			atributes_init(t_data *data, t_img *img);
+void			hooks_init(t_data *data);
+
 //Funciones para asignar el numero complejo
 t_complex		get_complex(int v_x, int v_y, t_data *data);
+
+//Funciones para asignar el color
+unsigned int	set_color(unsigned int it, t_data *data);
 
 //Funciones que implementa el algoritmo correspondiente
 unsigned int	burning(t_complex z, t_complex c, unsigned int it);
 unsigned int	m_j(t_complex z, t_complex c, unsigned int it);
 
-//Funcion que captura el movimiento de raton
-
-//Funcion que implementa ell zoom
-
-//Funcion que crea el color
-
-//Funcion para moverse con las flechas
-
-//Funcion para aumentar el numero de iteraciones
-
+//Utilidades
+void			change_size(double *v_max, double *v_min, double increase);
+void			colors(int key_code, t_data *data);
+void			key_zoom();
+void			mouse_zoom();
 #endif

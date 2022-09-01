@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:16:35 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/25 20:20:45 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/01 20:40:12 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,19 @@ t_complex	get_complex(int x, int y, t_data *data)
 	return (complex);
 }
 
-void	atributes_init(t_data *data)
+void	atributes_init(t_data *data, t_img *img)
 {
+	data->img = img;
 	data->x_max = 2.0;
 	data->y_max = 2.0;
 	data->x_min = -2.0;
 	data->y_min = -2.0;
+	data->move = 0.1;
 	data->iterations = 5000;
 	data->factor_x = (data->x_max - data->x_min) / ((double) XWINDOW);
 	data->factor_y = (data->y_max - data->y_min) / ((double) YWINDOW);
 	data->blue = 155;
 	data->red = 155;
 	data->green = 155;
+	data->rendering = 0;
 }
