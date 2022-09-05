@@ -6,22 +6,22 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:47:55 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/01 20:34:35 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/05 20:49:57 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#define I 105
-#define G 103
-#define B 98
-#define R 114
-#define U 117
+#define I 34
+#define G 5
+#define B 11
+#define R 15
+#define U 32
 #define S_UP 5
 #define S_DN 4
-#define DOWN 65362
-#define UP 65364
-#define RIGHT 65363
-#define LEFT 65361
+#define DOWN 126
+#define UP 125
+#define RIGHT 124
+#define LEFT 123
 
 int		key_hook(int key_code, t_data *data)
 {
@@ -42,7 +42,7 @@ int		key_hook(int key_code, t_data *data)
 		else if (key_code == LEFT)
 			change_size(&data->x_max, &data->x_min, (-1) * data->move);
 		else if (key_code == UP)
-			change_size(&data->x_max, &data->y_min, data->move);
+			change_size(&data->y_max, &data->y_min, data->move);
 		else if (key_code == DOWN)
 			change_size(&data->y_max, &data->y_min, (-1) * data->move);
 		render(data);
@@ -54,13 +54,14 @@ int		mouse_hook(int key_code, int x, int y, t_data *data)
 {
 	if (!data->rendering)
 	{
+		x = y;
 		if (key_code == S_UP)
-			mouse_zoom(x, y, 1.1, data);
+			zoom(0.5, data);
 		else if (key_code == S_DN)
-			mouse_zoom(x, y, 0.9, data);
+			zoom(2, data);
 		render(data);
 	}
-	return (1);
+	return (printf("%d\n", key_code));
 }
 
 void	hooks_init(t_data *data)

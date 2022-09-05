@@ -6,17 +6,17 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 18:45:56 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/01 20:40:35 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/05 20:49:58 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # ifndef XWINDOW
-#  define XWINDOW 100
+#  define XWINDOW 500
 # endif
 # ifndef YWINDOW
-#  define YWINDOW 100
+#  define YWINDOW 500
 # endif
 # define MANDELBROT 1
 # define JULIA 2
@@ -25,7 +25,7 @@
 # include <errno.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "./mlx_linux/mlx.h"
+# include "./mlx/mlx.h"
 
 typedef struct s_img
 {
@@ -82,6 +82,7 @@ void			hooks_init(t_data *data);
 
 //Funciones para asignar el numero complejo
 t_complex		get_complex(int v_x, int v_y, t_data *data);
+double			set_factor(double v_max, double v_min, double size);
 
 //Funciones para asignar el color
 unsigned int	set_color(unsigned int it, t_data *data);
@@ -95,4 +96,5 @@ void			change_size(double *v_max, double *v_min, double increase);
 void			change_factor(double *v_max, double *v_min, double increase);
 void			colors(int key_code, t_data *data);
 void			mouse_zoom(int x, int y, double factor, t_data *data);
+void			zoom(double factor, t_data *data);
 #endif

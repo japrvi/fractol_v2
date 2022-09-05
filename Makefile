@@ -6,7 +6,7 @@
 #    By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 18:08:51 by jpozuelo          #+#    #+#              #
-#    Updated: 2022/08/23 20:10:58 by jpozuelo         ###   ########.fr        #
+#    Updated: 2022/09/05 17:39:42 by jpozuelo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ SRCS	=	$(wildcard *.c)
 OBJS	=	$(SRCS:.c=.o)
 CC		=	clang
 RM		=	rm -rf
-CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address -O3
 NAME	=	fractol
-MLX		=	mlx_linux
+MLX		=	mlx
 
 all:	$(NAME)
 
@@ -29,10 +29,10 @@ fclean:	clean
 
 %.o:	%.c
 	@$(MAKE) --directory=$(MLX) 
-	@$(CC) $(CFLAGS) -I/usr/include -I$(MLX) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(MLX) -c $< -o $@
 
 $(NAME):	$(OBJS)
-	@$(CC) $(OBJS) $(CFLAGS) -L$(MLX) -lmlx_Linux -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 re: fclean all
 
