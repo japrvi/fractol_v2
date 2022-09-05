@@ -28,7 +28,7 @@ int	rutine(t_data *data, t_complex vary)
 		z_o = vary;
 		constant = data->constant;
 	}
-	return (100 * data->rutine(z_o, constant, data->iterations) + 100);
+	return (data->rutine(z_o, constant, data->iterations));
 }
 
 void	my_pixel_put(t_img *img, int x, int y, int color)
@@ -55,6 +55,7 @@ void	render(t_data *data)
 		while (j < YWINDOW)
 		{
 			color = rutine(data, get_complex(i, j, data));
+			color = set_color(color, data);
 			my_pixel_put(img, i, j, color);
 			j++;
 		}

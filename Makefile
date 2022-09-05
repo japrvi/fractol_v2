@@ -16,12 +16,12 @@ CC		=	clang
 RM		=	rm -rf
 CFLAGS	=	-Wall -Werror -Wextra -fsanitize=address
 NAME	=	fractol
-MLX		=	./minilibx_opengl_20191021
+MLX		=	mlx_linux
 
 all:	$(NAME)
 
 clean:
-		@$(MAKE) --directory=./minilibx_opengl_20191021 clean
+		@$(MAKE) --directory=$(MLX) clean
 		@$(RM) $(OBJS)
 
 fclean:	clean
@@ -29,10 +29,10 @@ fclean:	clean
 
 %.o:	%.c
 	@$(MAKE) --directory=$(MLX) 
-	@$(CC) $(CFLAGS) -I$(MLX) -c $< -o $@
+	@$(CC) $(CFLAGS) -I/usr/include -I$(MLX) -c $< -o $@
 
 $(NAME):	$(OBJS)
-	@$(CC) $(OBJS) -L$(MLX) -lmlx -framework OpenGL -framework AppKit  $(CFLAGS) -o $(NAME)
+	@$(CC) $(OBJS) $(CFLAGS) -L$(MLX) -lmlx_Linux -L/usr/lib -I$(MLX) -lXext -lX11 -lm -lz -o $(NAME)
 
 re: fclean all
 

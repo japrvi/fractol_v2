@@ -11,51 +11,60 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-int	render_next_frame(t_data *data)
-{
-	if (!data->rendering)
-		render(data);
-	return (1);
-}
+#define I 105
+#define G 103
+#define B 98
+#define R 114
+#define U 117
+#define S_UP 5
+#define S_DN 4
+#define DOWN 65362
+#define UP 65364
+#define RIGHT 65363
+#define LEFT 65361
 
 int		key_hook(int key_code, t_data *data)
 {
-	if (key_code == 124)
-		change_size(&data->x_max, &data->x_min, data->move);
-	else if (key_code == 123)
-		change_size(&data->x_max, &data->x_min, -1 * data->move);
-	else if (key_code == 126)
-		change_size(&data->y_max, &data->y_min, -1 * data->move);
-	else if (key_code == 125)
-		change_size(&data->x_max, &data->x_min, 1 * data->move);
-	else if (key_code == 46)
-		change_size(NULL, &data->move, data->move);
-	else if (key_code == 69)
-		key_zoom();
-	else if (key_code == 78)
-		key_zoom();
-	else if (key_code == 32)
-		data->iterations -= 10;
-	else if (key_code == 34)
-		data->iterations += 10;
-	else if (key_code == 9 || key_code == 15 || key_code == 5 || key_code == 8)
-		colors(key_code, data);
-	return (1);
+	if (!data->rendering)
+	{
+		if (key_code == I)
+			data->iterations *= 2;
+		else if (key_code == U)
+			data->iterations /= 2;
+		else if (key_code == G)
+			data->green = (data->green == 0);
+		else if (key_code == B)
+			data->blue = (data->blue == 0);
+		else if (key_code == R)
+			data->red = (data->red == 0);
+		else if (key_code == RIGHT)
+			change_size(&data->x_max, &data->x_min, data->move);
+		else if (key_code == LEFT)
+			change_size(&data->x_max, &data->x_min, (-1) * data->move);
+		else if (key_code == UP)
+			change_size(&data->x_max, &data->y_min, data->move);
+		else if (key_code == DOWN)
+			change_size(&data->y_max, &data->y_min, (-1) * data->move);
+		render(data);
+	}
+	return(printf("%d %d real: %f im: %f\n", data->iterations, key_code, data->x_max, data->y_max));
 }
 
 int		mouse_hook(int key_code, int x, int y, t_data *data)
 {
-	if (key_code == 4 && x && y && data)
-		mouse_zoom();
-	else if (key_code == 5 && x && y && data)
-		mouse_zoom();
+	if (!data->rendering)
+	{
+		if (key_code == S_UP)
+			mouse_zoom(x, y, 1.1, data);
+		else if (key_code == S_DN)
+			mouse_zoom(x, y, 0.9, data);
+		render(data);
+	}
 	return (1);
 }
 
 void	hooks_init(t_data *data)
 {
-	mlx_loop_hook(data->mlx, render_next_frame, data);
-	mlx_key_hook(data->mlx, key_hook, data);
-	mlx_mouse_hook(data->mlx, mouse_hook, data);
+	mlx_key_hook(data->mlx_win, key_hook, data);
+	mlx_mouse_hook(data->mlx_win, mouse_hook, data);
 }	

@@ -12,6 +12,20 @@
 
 #include "fractol.h"
 
+unsigned int	set_color(unsigned int it, t_data *data)
+{
+	unsigned int	aux;
+
+	if (it == data->iterations)
+		return (0);
+	else
+	{
+		aux = (it % 156) + 99;
+		return ((aux * data->blue) + (aux * data->green * 256)
+				+ (data->red * aux * 256 * 256));
+	}
+}
+
 void	square(double *x, double *y, double vx, double vy)
 {
 	*x = vx * vx;

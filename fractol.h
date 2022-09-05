@@ -13,19 +13,19 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # ifndef XWINDOW
-#  define XWINDOW 1000
+#  define XWINDOW 100
 # endif
 # ifndef YWINDOW
-#  define YWINDOW 1000
+#  define YWINDOW 100
 # endif
 # define MANDELBROT 1
 # define JULIA 2
 # define SHIP 3
 # include <math.h>
 # include <errno.h>
-# include "./minilibx_opengl_20191021/mlx.h"
 # include <stdlib.h>
 # include <stdio.h>
+# include "./mlx_linux/mlx.h"
 
 typedef struct s_img
 {
@@ -92,7 +92,7 @@ unsigned int	m_j(t_complex z, t_complex c, unsigned int it);
 
 //Utilidades
 void			change_size(double *v_max, double *v_min, double increase);
+void			change_factor(double *v_max, double *v_min, double increase);
 void			colors(int key_code, t_data *data);
-void			key_zoom();
-void			mouse_zoom();
+void			mouse_zoom(int x, int y, double factor, t_data *data);
 #endif
