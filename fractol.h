@@ -13,10 +13,10 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # ifndef XWINDOW
-#  define XWINDOW 100
+#  define XWINDOW 400
 # endif
 # ifndef YWINDOW
-#  define YWINDOW 100
+#  define YWINDOW 400
 # endif
 # define MANDELBROT 1
 # define JULIA 2
@@ -53,6 +53,8 @@ typedef struct s_data
 	double			factor_x;
 	double			factor_y;
 	double			move;
+	double			inv_x;
+	double			inv_y;
 	unsigned int	iterations;
 	unsigned char	blue;
 	unsigned char	red;
@@ -82,6 +84,7 @@ void			hooks_init(t_data *data);
 
 //Funciones para asignar el numero complejo
 t_complex		get_complex(int v_x, int v_y, t_data *data);
+double			set_factor(double v_max, double v_min, double inv_size);
 
 //Funciones para asignar el color
 unsigned int	set_color(unsigned int it, t_data *data);
@@ -94,5 +97,6 @@ unsigned int	m_j(t_complex z, t_complex c, unsigned int it);
 void			change_size(double *v_max, double *v_min, double increase);
 void			change_factor(double *v_max, double *v_min, double increase);
 void			colors(int key_code, t_data *data);
-void			mouse_zoom(int x, int y, double factor, t_data *data);
+void			zoom_in(int x, int y, t_data *data);
+void			zoom_out(int x, int y, t_data *data);
 #endif

@@ -20,7 +20,7 @@ unsigned int	set_color(unsigned int it, t_data *data)
 		return (0);
 	else
 	{
-		aux = (it % 156) + 99;
+		aux = (it % 225) + 30;
 		return ((aux * data->blue) + (aux * data->green * 256)
 				+ (data->red * aux * 256 * 256));
 	}

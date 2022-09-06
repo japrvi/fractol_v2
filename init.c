@@ -25,9 +25,15 @@ t_complex	get_complex(int x, int y, t_data *data)
 {
 	t_complex	complex;
 
-	complex.real = data->factor_x * (double) x + data->x_min;
-	complex.im = data->factor_y * (double) y + data->y_min;
+	complex.real = data->factor_x * ((double) x) + data->x_min;
+	complex.im = data->factor_y * ((double) y) + data->y_min;
+	//printf("%f, %f\n", complex.real, complex.im);
 	return (complex);
+}
+
+double	set_factor(double v_max, double v_min, double inv_size)
+{
+	return ((v_max - v_min) * inv_size);
 }
 
 void	atributes_init(t_data *data, t_img *img)
@@ -39,8 +45,10 @@ void	atributes_init(t_data *data, t_img *img)
 	data->y_min = -2.0;
 	data->move = 0.1;
 	data->iterations = 100;
-	data->factor_x = (data->x_max - data->x_min) / ((double) XWINDOW);
-	data->factor_y = (data->y_max - data->y_min) / ((double) YWINDOW);
+	data->inv_x = 1.0 / ((double) XWINDOW);
+	data->inv_y = 1.0 / ((double) YWINDOW);
+	data->factor_x = set_factor(data->x_max, data->x_min, data->inv_x);
+	data->factor_y = set_factor(data->y_max, data->y_min, data->inv_y);
 	data->blue = 1;
 	data->rendering = 0;
 }

@@ -42,12 +42,12 @@ int		key_hook(int key_code, t_data *data)
 		else if (key_code == LEFT)
 			change_size(&data->x_max, &data->x_min, (-1) * data->move);
 		else if (key_code == UP)
-			change_size(&data->x_max, &data->y_min, data->move);
+			change_size(&data->y_max, &data->y_min, data->move);
 		else if (key_code == DOWN)
 			change_size(&data->y_max, &data->y_min, (-1) * data->move);
 		render(data);
 	}
-	return(printf("%d %d real: %f im: %f\n", data->iterations, key_code, data->x_max, data->y_max));
+	return(printf("%d %d real: %f im: %f move: %f\n", data->iterations, key_code, data->x_max, data->y_max, data->move));
 }
 
 int		mouse_hook(int key_code, int x, int y, t_data *data)
@@ -55,9 +55,9 @@ int		mouse_hook(int key_code, int x, int y, t_data *data)
 	if (!data->rendering)
 	{
 		if (key_code == S_UP)
-			mouse_zoom(x, y, 1.1, data);
+			zoom_in(x, y, data);
 		else if (key_code == S_DN)
-			mouse_zoom(x, y, 0.9, data);
+			zoom_out(x, y, data);
 		render(data);
 	}
 	return (1);
