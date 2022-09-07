@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:47:55 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/07 22:53:05 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/07 23:05:23 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #define B 11
 #define R 15
 #define U 32
+#define C 8
 #define S_UP 5
 #define S_DN 4
 #define DOWN 126
@@ -40,6 +41,12 @@ void	moves(int key_code, t_data *data)
 		change_size(&data->y_max, &data->y_min, data->move);
 	else if (key_code == DOWN)
 		change_size(&data->y_max, &data->y_min, (-1) * data->move);
+	else if (key_code == C)
+	{
+		data->blue += 1 ;
+		data->red += 2;
+		data->green += 3;
+	}
 }
 
 int	key_hook(int key_code, t_data *data)
