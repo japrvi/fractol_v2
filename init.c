@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 16:16:35 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/05 20:05:37 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:16:30 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_complex	get_complex(int x, int y, t_data *data)
 
 double	set_factor(double v_max, double v_min, double size)
 {
-	return ((v_max - v_min) / size);
+	return ((v_max - v_min) * size);
 }
 
 void	atributes_init(t_data *data, t_img *img)
@@ -44,8 +44,10 @@ void	atributes_init(t_data *data, t_img *img)
 	data->y_min = -2.0;
 	data->move = 0.25;
 	data->iterations = 32;
-	data->factor_x = set_factor(data->x_max, data->x_min, (double) XWINDOW); 
-	data->factor_y = set_factor(data->y_max, data->y_min, (double) YWINDOW);
+	data->inv_x = 1.0 / ((double) XWINDOW);
+	data->inv_y = 1.0 / ((double) YWINDOW);
+	data->factor_x = set_factor(data->x_max, data->x_min, data->inv_x); 
+	data->factor_y = set_factor(data->y_max, data->y_min, data->inv_y);
 	data->blue = 1;
 	data->rendering = 0;
 }

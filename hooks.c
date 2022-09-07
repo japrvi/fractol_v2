@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:47:55 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/05 20:49:57 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:11:57 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int		mouse_hook(int key_code, int x, int y, t_data *data)
 	{
 		x = y;
 		if (key_code == S_UP)
-			zoom(0.5, data);
+			zoom_in(x, y, data);
 		else if (key_code == S_DN)
-			zoom(2, data);
+			zoom_out(x, y, data);
 		render(data);
 	}
 	return (printf("%d\n", key_code));
