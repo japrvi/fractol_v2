@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 20:39:44 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/08/25 19:48:03 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:44:04 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	parse(t_data *data, int argc, char **argv)
 		{
 			data->type = JULIA;
 			data->rutine = m_j;
-			data->constant = get_complex(ft_atoi(argv[2]), ft_atoi(argv[3]), data);
+			data->constant = get_complex(ft_atoi(argv[2]), ft_atoi(argv[3]),
+					data);
 		}
 		else if (!strcmp(argv[1], "Ship") && argc == 2)
 		{

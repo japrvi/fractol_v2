@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 19:45:36 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/05 18:30:12 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:36:40 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ unsigned int	set_color(unsigned int it, t_data *data)
 		return (0);
 	else
 	{
-		aux = (it % 210) + 45;
+		aux = (it % 235) + 20;
 		return ((aux * data->blue) + (aux * data->green * 256)
-				+ (data->red * aux * 256 * 256));
+			+ (data->red * aux * 256 * 256));
 	}
 }
 

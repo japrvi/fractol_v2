@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:47:55 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/07 21:11:57 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:42:11 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #define RIGHT 124
 #define LEFT 123
 
-int		key_hook(int key_code, t_data *data)
+int	key_hook(int key_code, t_data *data)
 {
 	if (!data->rendering)
 	{
@@ -47,10 +47,10 @@ int		key_hook(int key_code, t_data *data)
 			change_size(&data->y_max, &data->y_min, (-1) * data->move);
 		render(data);
 	}
-	return(printf("%d %d real: %f im: %f\n", data->iterations, key_code, data->x_max, data->y_max));
+	return (1);
 }
 
-int		mouse_hook(int key_code, int x, int y, t_data *data)
+int	mouse_hook(int key_code, int x, int y, t_data *data)
 {
 	if (!data->rendering)
 	{
@@ -61,7 +61,7 @@ int		mouse_hook(int key_code, int x, int y, t_data *data)
 			zoom_out(x, y, data);
 		render(data);
 	}
-	return (printf("%d\n", key_code));
+	return (1);
 }
 
 void	hooks_init(t_data *data)
