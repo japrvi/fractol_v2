@@ -6,7 +6,7 @@
 /*   By: jpozuelo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 17:47:55 by jpozuelo          #+#    #+#             */
-/*   Updated: 2022/09/07 21:42:11 by jpozuelo         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:53:05 by jpozuelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,34 @@
 #define UP 125
 #define RIGHT 124
 #define LEFT 123
+#define KEY_ESCAPE 53
+
+void	escape(t_data *data)
+{
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	exit(1);
+}
+
+void	moves(int key_code, t_data *data)
+{
+	if (key_code == RIGHT)
+		change_size(&data->x_max, &data->x_min, data->move);
+	else if (key_code == LEFT)
+		change_size(&data->x_max, &data->x_min, (-1) * data->move);
+	else if (key_code == UP)
+		change_size(&data->y_max, &data->y_min, data->move);
+	else if (key_code == DOWN)
+		change_size(&data->y_max, &data->y_min, (-1) * data->move);
+}
 
 int	key_hook(int key_code, t_data *data)
 {
 	if (!data->rendering)
 	{
-		if (key_code == I)
+		moves(key_code, data);
+		if (key_code == KEY_ESCAPE)
+			escape(data);
+		else if (key_code == I)
 			data->iterations *= 2;
 		else if (key_code == U)
 			data->iterations /= 2;
@@ -37,14 +59,6 @@ int	key_hook(int key_code, t_data *data)
 			data->blue = (data->blue == 0);
 		else if (key_code == R)
 			data->red = (data->red == 0);
-		else if (key_code == RIGHT)
-			change_size(&data->x_max, &data->x_min, data->move);
-		else if (key_code == LEFT)
-			change_size(&data->x_max, &data->x_min, (-1) * data->move);
-		else if (key_code == UP)
-			change_size(&data->y_max, &data->y_min, data->move);
-		else if (key_code == DOWN)
-			change_size(&data->y_max, &data->y_min, (-1) * data->move);
 		render(data);
 	}
 	return (1);
@@ -54,7 +68,6 @@ int	mouse_hook(int key_code, int x, int y, t_data *data)
 {
 	if (!data->rendering)
 	{
-		x = y;
 		if (key_code == S_UP)
 			zoom_in(x, y, data);
 		else if (key_code == S_DN)
